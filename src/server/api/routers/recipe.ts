@@ -17,7 +17,6 @@ const getAverageRating = (
 
 export const recipeRouter = createTRPCRouter({
   getAll: publicProcedure.query(async ({ ctx }) => {
-    try {
       const recipes = await ctx.prisma.recipe.findMany({
         include: {
           ratings: {
@@ -38,15 +37,12 @@ export const recipeRouter = createTRPCRouter({
         return { ...item, ratings: Math.round(averageRating * 2) / 2 };
       });
       return recipesWithRatings;
-    } catch (error) {
-      console.log(error);
-      return [];
-    }
+  
   }),
   getById: publicProcedure
     .input(z.object({ id: z.string() }))
     .query(async ({ ctx, input }) => {
-      try {
+    
         const data = await ctx.prisma.recipe.findFirst({
           where:{
             id: input.id
@@ -72,10 +68,7 @@ export const recipeRouter = createTRPCRouter({
         const recipe = { ...data, ratings: Math.round(averageRating * 2) / 2 }
        
         return recipe;
-      } catch (error) {
-        console.log(error);
-        return {};
-      }
+    
     }),
   create: publicProcedure
     .input(
