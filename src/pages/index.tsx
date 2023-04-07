@@ -10,8 +10,8 @@ import { api } from "~/utils/api";
 
 const Home: NextPage = (props) => {
   const { t } = useTranslation('common');
-  const {data, isLoading} = api.recipe.getAll.useQuery();
-  console.log({data})
+  const {data, isLoading, error} = api.recipe.getAll.useQuery();
+  console.log({error})
   return (
     <>
       <Head>
