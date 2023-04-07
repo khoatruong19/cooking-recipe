@@ -65,7 +65,7 @@ export const recipeRouter = createTRPCRouter({
           },
         });
 
-        if (!data) throw new TRPCError({ code: "NOT_FOUND" });
+        if (!data) return {};
 
         const averageRating = getAverageRating(data)
         
