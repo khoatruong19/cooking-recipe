@@ -11,7 +11,7 @@ import { api } from "~/utils/api";
 const Home: NextPage = (props) => {
   const { t } = useTranslation('common');
   const {data, isLoading, error} = api.recipe.getAll.useQuery();
-  console.log({error})
+
   return (
     <>
       <Head>
@@ -27,7 +27,7 @@ const Home: NextPage = (props) => {
 };
 
 
-export async function getStaticProps({ locale }: { locale: string }) {
+export async function getStaticProps({ locale }: { locale: string }) {  
   return {
     props: {
       ...(await serverSideTranslations(locale, ["common"])),
