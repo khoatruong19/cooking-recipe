@@ -74,7 +74,7 @@ export const recipeRouter = createTRPCRouter({
         return recipe;
       } catch (error) {
         console.log(error);
-        return [];
+        return {};
       }
     }),
   create: publicProcedure
