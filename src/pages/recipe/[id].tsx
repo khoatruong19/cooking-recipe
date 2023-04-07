@@ -23,14 +23,11 @@ const RecipeDetail = ({id}: IProps) => {
 }
 
 export const getStaticProps: GetStaticProps = async (context) => {
-    console.log({context})
     const ssg = generateSSGHelper();
 
     const id = context.params?.id;
   
-    if (typeof id !== "string") throw new Error("no id");
-  
-    await ssg.recipe.getById.prefetch({ id });
+    await ssg.recipe.getById.prefetch({ id:`${id as string}` });
   
     return {
       props: {
